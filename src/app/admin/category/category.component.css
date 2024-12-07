@@ -1,0 +1,136 @@
+/* Modal background */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);  /* Darkened background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Modal content box */
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal h3 {
+    margin-top: 0;
+}
+
+.modal button {
+    margin-top: 10px;
+}
+
+/* Table header and body */
+h2 {
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Table Styling */
+.table-bordered {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+    font-size: 1em;
+    text-align: left;
+}
+
+.table-bordered th,
+.table-bordered td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.table-bordered th {
+    background-color: #38a169;  /* Darker green */
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table-bordered td {
+    background-color: #f9f9f9;
+}
+
+.table-bordered tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+/* Button styling inside the table */
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Responsive table for smaller screens */
+@media (max-width: 767px) {
+    .table-bordered {
+        font-size: 0.9em;
+        border: none;
+    }
+
+    .table-bordered th, .table-bordered td {
+        padding: 10px;
+    }
+
+    .table-bordered caption {
+        display: none;
+    }
+
+    .table-bordered thead {
+        display: none; /* Hide the table headers */
+    }
+
+    .table-bordered tr {
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    .table-bordered td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table-bordered td:before {
+        content: attr(data-title);
+        position: absolute;
+        left: 10px;
+        font-size: 0.8em;
+        color: #777;
+    }
+
+    .modal-overlay {
+        padding: 10px;
+    }
+}
+
+/* Centered text for "No data" or similar messages */
+.p {
+    text-align: center;
+    padding-top: 140px;
+    font-size: 14px;
+}

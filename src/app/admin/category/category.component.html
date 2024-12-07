@@ -1,0 +1,66 @@
+<div>
+    <h2>Category List</h2>
+    <table class="table-bordered responsive-table">
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of categories">
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                    <button (click)="editCategory(category)">Edit</button>
+                    <button (click)="deleteCategory(category.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="loadAddCategoryForm()">Add Category</button>
+    <div *ngIf="isAdding" class="modal-overlay">
+        <div class="modal">
+            <h3>Add Category</h3>
+            <form (ngSubmit)="addCategory(category)">
+                <div>
+                    <label for="categoryName">Category Name:</label>
+                    <input
+                        type="text"
+                        id="categoryName"
+                        [(ngModel)]="category.name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div>
+                    <button type="submit">Add</button>
+                    <button type="button" (click)="cancelAdd()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+    <!-- Modal for editing category -->
+    <div *ngIf="isEditing" class="modal-overlay">
+        <div class="modal">
+            <h3>Edit Category</h3>
+            <form (ngSubmit)="updateCategory(category)">
+                <div>
+                    <label for="categoryName">Category Name:</label>
+                    <input
+                        type="text"
+                        id="categoryName"
+                        [(ngModel)]="category.name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div>
+                    <button type="submit">Save</button>
+                    <button type="button" (click)="cancelEdit()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

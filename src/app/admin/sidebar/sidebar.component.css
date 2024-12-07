@@ -1,0 +1,80 @@
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: left;
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-y: auto;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .sidebar a:hover {
+    background-color: #444;
+  }
+  
+  .sidebar button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .sidebar button:hover {
+    background-color: #444;
+  }
+  
+  .sidebar .divider {
+    border-bottom: 1px solid #444;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar .fas {
+    margin-right: 10px;
+  }
+  
+  .sidebar img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 20px; /* Add some margin to separate the image from the list */
+  }
+  
+  .sidebar h2 {
+    margin-top: 0; /* Remove margin top from h2 */
+    font-size: 18px; /* Adjust font size */
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .sidebar h3 {
+    font-size: 14px; /* Adjust font size */
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 20px; /* Add some margin to separate the username from the list */
+  }
