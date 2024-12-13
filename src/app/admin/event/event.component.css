@@ -1,0 +1,43 @@
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  /* Table header styling */
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd; /* Light grey border for the cells */
+  }
+  
+  /* Table header background color */
+  th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+  }
+  
+  /* Table row hover effect */
+  tr:hover {
+    background-color: #f9f9f9; /* Light hover effect for rows */
+  }
+  
+  /* Add a border to the table */
+  table {
+    border: 2px solid #333; /* Dark border around the whole table */
+    border-radius: 5px; /* Optional: rounded corners */
+  }
+  
+  /* Optional: Styling for button inside the table */
+  button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  

@@ -7,12 +7,11 @@
                 <th>Material Name</th>
                 <th>Quantity</th>
                 <th>Hourly Rate</th>
-        
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let material of categories">
+            <tr *ngFor="let material of materials">
                 <td>{{ material.id }}</td>
                 <td>{{ material.name }}</td>
                 <td>{{ material.quantity }}</td>
@@ -25,9 +24,11 @@
         </tbody>
     </table>
     <button (click)="loadAddMaterialForm()">Add Material</button>
-    <div *ngIf="isAdding" class="modal-overlay">
+
+    <!-- Modal for adding a material -->
+    <div *ngIf="isAdding" class="modal-overlay show">
         <div class="modal">
-            <h3>Add material</h3>
+            <h3>Add Material</h3>
             <form (ngSubmit)="addMaterial(material)">
                 <div>
                     <label for="materialName">Material Name:</label>
@@ -65,18 +66,40 @@
                 </div>
             </form>
         </div>
-    <!-- Modal for editing material -->
-    <div *ngIf="isEditing" class="modal-overlay">
+    </div>
+
+    <!-- Modal for editing a material -->
+    <div *ngIf="isEditing" class="modal-overlay show">
         <div class="modal">
-            <h3>Edit material</h3>
+            <h3>Edit Material</h3>
             <form (ngSubmit)="updateMaterial(material)">
                 <div>
-                    <label for="materialName">material Name:</label>
+                    <label for="materialName">Material Name:</label>
                     <input
                         type="text"
                         id="materialName"
                         [(ngModel)]="material.name"
                         name="name"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="materialQuantity">Quantity:</label>
+                    <input
+                        type="number"
+                        id="materialQuantity"
+                        [(ngModel)]="material.quantity"
+                        name="quantity"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="materialHourlyRate">Hourly Rate:</label>
+                    <input
+                        type="number"
+                        id="materialHourlyRate"
+                        [(ngModel)]="material.hourlyRate"
+                        name="hourlyRate"
                         required
                     />
                 </div>

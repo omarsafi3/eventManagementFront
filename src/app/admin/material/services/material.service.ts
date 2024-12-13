@@ -22,4 +22,7 @@ export class MaterialService {
   deleteMaterial(id: any) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  getMaterial(id: number) {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
 }

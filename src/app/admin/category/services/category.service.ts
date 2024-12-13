@@ -21,4 +21,7 @@ export class CategoryService {
   deleteCategory(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  getCategory(id: number) {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
 }

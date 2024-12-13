@@ -10,7 +10,7 @@ export class LoginGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    const token = localStorage.getItem('token');  // Check if token is available
+    const token = localStorage.getItem('token');  // Check if token is available  
 
     if (token) {
       // Prevent the guard from firing a redirect again if already on the dashboard

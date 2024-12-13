@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class MaterialComponent {
   constructor(private materialService: MaterialService) {}
   isAdding = false;
-  categories: any[] = [];
+  materials: any[] = [];
   material = {
     id: 0,
     name: '',
@@ -24,7 +24,7 @@ export class MaterialComponent {
   isEditing = false;
   loadMaterials(): void {
     this.materialService.getMaterials().subscribe((data) => {
-      this.categories = data;
+      this.materials = data;
     });
   }
   ngOnInit(): void {

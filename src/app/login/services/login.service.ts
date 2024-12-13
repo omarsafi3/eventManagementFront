@@ -5,14 +5,17 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginService {
-  apiUrl = environment.apiUrl + '/api/v1/auth';
+  apiUrl = environment.apiUrl + '/api/v1';
   constructor(private http: HttpClient) {
    }
   login(user: any) {
-    return this.http.post(`${this.apiUrl}/login`, user);
+    return this.http.post(`${this.apiUrl}/auth/login`, user);
+  }
+  getUser(email: string) {
+    return this.http.get<any>(`${this.apiUrl}/participant/email/${email}`);
   }
   getRoles() {
-    return this.http.get<any>(`${this.apiUrl}/me`);  // Assuming this endpoint provides user info with roles
+    return this.http.get<any>(`${this.apiUrl}/auth/me`);  // Assuming this endpoint provides user info with roles
   }
   logout() {
     localStorage.removeItem('token');  // Remove token from localStorage

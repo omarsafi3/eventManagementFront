@@ -24,7 +24,9 @@ export class LoginComponent {
       password: ['', Validators.required]    // Add password control
     });
   }
-
+  onRegister() {
+    this.router.navigate(['/register']);  // Redirect to register page
+  }
   onSubmit() {
     if (this.loginForm.invalid) {
       return;

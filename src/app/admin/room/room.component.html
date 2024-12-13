@@ -1,0 +1,110 @@
+<div>
+    <h2>Room List</h2>
+    <table class="table-bordered responsive-table">
+        <thead>
+            <tr>
+                <th>Room ID</th>
+                <th>Room Name</th>
+                <th>Capacity</th>
+                <th>Hourly Rate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let room of rooms">
+                <td>{{ room.id }}</td>
+                <td>{{ room.name }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.hourlyRate }}</td>
+                <td>
+                    <button (click)="editRoom(room)">Edit</button>
+                    <button (click)="deleteRoom(room.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="loadAddRoomForm()">Add Room</button>
+    <div *ngIf="isEditing">
+        <div class="modal">
+            <h3>Edit Room</h3>
+            <form (ngSubmit)="updateRoom(room)">
+                <div>
+                    <label for="roomName">Room Name:</label>
+                    <input
+                        type="text"
+                        id="roomName"
+                        [(ngModel)]="room.name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="roomCapacity">Capacity:</label>
+                    <input
+                        type="number"
+                        id="roomCapacity"
+                        [(ngModel)]="room.capacity"
+                        name="capacity"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="roomHourlyRate">Hourly Rate:</label>
+                    <input
+                        type="number"
+                        id="roomHourlyRate"
+                        [(ngModel)]="room.hourlyRate"
+                        name="hourlyRate"
+                        required
+                    />
+                </div>
+                <div>
+                    <button type="submit">Update</button>
+                    <button type="button" (click)="cancelEdit()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div *ngIf="isAdding">
+        <div class="modal">
+            <h3>Add Room</h3>
+            <form (ngSubmit)="addRoom(room)">
+                <div>
+                    <label for="roomName">Room Name:</label>
+                    <input
+                        type="text"
+                        id="roomName"
+                        [(ngModel)]="room.name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="roomCapacity">Capacity:</label>
+                    <input
+                        type="number"
+                        id="roomCapacity"
+                        [(ngModel)]="room.capacity"
+                        name="capacity"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="roomHourlyRate">Hourly Rate:</label>
+                    <input
+                        type="number"
+                        id="roomHourlyRate"
+                        [(ngModel)]="room.hourlyRate"
+                        name="hourlyRate"
+                        required
+                    />
+                </div>
+                <div>
+                    <button type="submit">Add</button>
+                    <button type="button" (click)="cancelAdd()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>  

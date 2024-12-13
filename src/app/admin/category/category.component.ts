@@ -61,7 +61,6 @@ export class CategoryComponent {
   }
   loadAddCategoryForm(): void {
     this.isAdding = true;
-    this.category = { id: this.category.id, name: '' };
   }
   cancelAdd(): void {
     this.isAdding = false;
