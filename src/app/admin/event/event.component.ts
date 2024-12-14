@@ -127,6 +127,9 @@ export class EventComponent {
   addEvent() {
     this.isAdding = !this.isAdding;
   }
+  cancelAdd() {
+    this.isAdding = !this.isAdding;
+  }
 
 
 }
