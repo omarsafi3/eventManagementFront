@@ -46,7 +46,7 @@ input {
 button {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #594b81;
     color: white;
     border: none;
     border-radius: 6px;
@@ -55,7 +55,7 @@ button {
 }
 
 button:hover:not(:disabled) {
-    background-color: #0056b3;
+    background-color: #594b81;
 }
 
 button:disabled {

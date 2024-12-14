@@ -8,6 +8,11 @@ body {
     width: 100%;
 }
 
+h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin: 0;  /* Remove any default margin */
+}
 /* Input Styling */
 input {
     width: 100%;
