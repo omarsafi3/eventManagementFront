@@ -1,43 +1,264 @@
-/* Table styling */
-table {
+/* Apply the Inter font globally */
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
     width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  
-  /* Table header styling */
-  th, td {
+}
+
+/* Input Styling */
+input, select, textarea{
+    width: 100%;
     padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd; /* Light grey border for the cells */
-  }
-  
-  /* Table header background color */
-  th {
-    background-color: #f2f2f2; /* Light grey background for headers */
-  }
-  
-  /* Table row hover effect */
-  tr:hover {
-    background-color: #f9f9f9; /* Light hover effect for rows */
-  }
-  
-  /* Add a border to the table */
-  table {
-    border: 2px solid #333; /* Dark border around the whole table */
-    border-radius: 5px; /* Optional: rounded corners */
-  }
-  
-  /* Optional: Styling for button inside the table */
-  button {
-    padding: 5px 10px;
-    background-color: #4CAF50;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #65558f;
+    box-shadow: 0 0 4px rgba(101, 85, 143, 0.6);
+    outline: none;
+}
+
+
+
+/* Label Styling */
+label {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+    color: #333;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Darkened background */
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Ensure modal is on top */
+    padding: 10px;
+    overflow-y: auto;
+
+}
+
+.modal-overlay.show {
+    display: flex; /* Show modal when 'show' class is added */
+}
+
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    margin: 40px; 
+}
+
+.modal h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal button {
+    width: 48%;
+    background-color: #65558f;
     color: white;
     border: none;
+    padding: 10px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 0.95em;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.modal button:hover {
+    background-color: #594b81;
+}
+
+.modal button:last-of-type {
+    background-color: #e44c97;
+}
+
+.modal button:last-of-type:hover {
+    background-color: #c7377d;
+}
+
+/* Layout for Start Time and Finish Time */
+.time-container {
+    display: flex;
+    gap: 20px; /* Space between the two inputs */
   }
   
-  button:hover {
-    background-color: #45a049; /* Darker green on hover */
+  .time-group {
+    flex: 1; /* Make both time inputs take equal space */
   }
   
+  .time-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .time-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+  }
+  
+
+.title-button-container {
+    display: flex;
+    align-items: center;  /* Aligns the items vertically in the center */
+    justify-content: space-between; /* Distributes space between items */
+    padding: 20px 0;
+}
+
+/* Table Styling */
+.table-bordered {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+    text-align: left;
+    background-color: #65558f;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table-bordered th,
+.table-bordered td {
+    padding: 12px 15px;
+    border: none;
+    text-align: left;
+}
+
+.table-bordered th {
+    background-color: #65558f;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1em;
+}
+
+.table-bordered td {
+    background-color: #f9f9f9;
+}
+
+.table-bordered tr:nth-child(even) td {
+    background-color: #f4f7fc;
+}
+
+.table-bordered tr:nth-child(odd) td {
+    background-color: #ffffff;
+}
+
+/* Button Styling */
+button {
+    background-color: #65558f;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-right: 8px;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+button:hover {
+    background-color: #594b81;
+}
+
+button.edit {
+    background-color: #9b75d2;
+}
+
+button.edit:hover {
+    background-color: #8a62b0;
+}
+
+button.delete {
+    background-color: #e44c97;
+}
+
+button.delete:hover {
+    background-color: #c7377d;
+}
+
+button.secondary {
+    background-color: #d6c6f1;
+    color: #45404f;
+}
+
+button.secondary:hover {
+    background-color: #c5aad7;
+}
+
+/* Responsive Styling */
+@media (max-width: 767px) {
+    .table-bordered {
+        font-size: 0.85em;
+        border: none;
+    }
+
+    .table-bordered th, .table-bordered td {
+        padding: 10px;
+    }
+
+    .table-bordered thead {
+        display: none;
+    }
+
+    .table-bordered tr {
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    .table-bordered td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table-bordered td:before {
+        content: attr(data-title);
+        position: absolute;
+        left: 10px;
+        font-size: 0.8em;
+        color: #777;
+    }
+
+    .modal {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .modal button {
+        width: 100%;
+        margin: 8px 0;
+    }
+}
+
+/* Centered text for empty states */
+.p {
+    text-align: center;
+    padding-top: 140px;
+    font-size: 14px;
+}

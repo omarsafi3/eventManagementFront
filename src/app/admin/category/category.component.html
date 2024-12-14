@@ -1,5 +1,8 @@
 <div>
-    <h2>Category List</h2>
+    <div class="title-button-container">
+        <h2>Category List</h2>
+        <button (click)="loadAddCategoryForm()">Add Category</button>
+    </div>
     <table class="table-bordered responsive-table">
         <thead>
             <tr>
@@ -13,51 +16,53 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>
-                    <button (click)="editCategory(category)">Edit</button>
-                    <button (click)="deleteCategory(category.id)">Delete</button>
+                    <button class="edit" (click)="editCategory(category)">Edit</button>
+                    <button class="delete" (click)="deleteCategory(category.id)">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button (click)="loadAddCategoryForm()">Add Category</button>
+    
     <div *ngIf="isAdding" class="modal-overlay">
         <div class="modal">
             <h3>Add Category</h3>
             <form (ngSubmit)="addCategory(category)">
                 <div>
-                    <label for="categoryName">Category Name:</label>
+                    <label for="categoryName">Category Name</label>
                     <input
                         type="text"
                         id="categoryName"
                         [(ngModel)]="category.name"
                         name="name"
+                        placeholder="Enter category name"
                         required
                     />
                 </div>
-                <div>
+                <div style="display: flex; justify-content: space-between;">
                     <button type="submit">Add</button>
                     <button type="button" (click)="cancelAdd()">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Modal for editing category -->
+    
+    <!-- Modal for editing a category -->
     <div *ngIf="isEditing" class="modal-overlay">
         <div class="modal">
             <h3>Edit Category</h3>
             <form (ngSubmit)="updateCategory(category)">
                 <div>
-                    <label for="categoryName">Category Name:</label>
+                    <label for="categoryName">Category Name</label>
                     <input
                         type="text"
                         id="categoryName"
                         [(ngModel)]="category.name"
                         name="name"
+                        placeholder="Edit category name"
                         required
                     />
                 </div>
-                <div>
+                <div style="display: flex; justify-content: space-between;">
                     <button type="submit">Save</button>
                     <button type="button" (click)="cancelEdit()">Cancel</button>
                 </div>

@@ -118,9 +118,11 @@ export class EventComponent {
     });
   }
   deleteEvent(id: number) {
+    const confirmed = window.confirm("Are you sure?");
+    if (confirmed ){
     this.eventService.deleteEvent(id).subscribe((res: any) => {
       this.loadEvents(); // Reload events after deletion
-    });
+    })};
   }
   addEvent() {
     this.isAdding = !this.isAdding;

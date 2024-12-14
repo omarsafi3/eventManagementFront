@@ -1,5 +1,8 @@
 <div>
-    <h2>Material List</h2>
+    <div class="title-button-container">
+        <h2>Material List</h2>
+        <button (click)="loadAddMaterialForm()">Add Material</button>
+    </div>
     <table class="table-bordered responsive-table">
         <thead>
             <tr>
@@ -17,13 +20,12 @@
                 <td>{{ material.quantity }}</td>
                 <td>{{ material.hourlyRate }}</td>
                 <td>
-                    <button (click)="editMaterial(material)">Edit</button>
-                    <button (click)="deleteMaterial(material.id)">Delete</button>
+                    <button class="edit" (click)="editMaterial(material)">Edit</button>
+                    <button class="delete" (click)="deleteMaterial(material.id)">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button (click)="loadAddMaterialForm()">Add Material</button>
 
     <!-- Modal for adding a material -->
     <div *ngIf="isAdding" class="modal-overlay show">

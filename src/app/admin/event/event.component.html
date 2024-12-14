@@ -1,4 +1,8 @@
-<table>
+<div class="title-button-container">
+  <h2>Events list</h2>
+  <button (click)="addEvent()">Add Event</button>
+</div>
+<table class="table-bordered responsive-table">
   <thead>
     <tr>
       <th>Title</th>
@@ -19,37 +23,39 @@
       
       <td>
         <span *ngFor="let category of categories">
-          <span *ngIf="category.id == event.category.id">{{ category.name }}</span>
+          <span *ngIf="category.id === event.category.id">{{ category.name }}</span>
         </span>
       </td>
 
+      <td>
       <span *ngFor="let client of clients">
-        <span *ngIf="client.id == event.client.id"><td>{{ client.name }}</td></span>
+        <span *ngIf="client.id === event.client.id">{{ client.name }}</span>
       </span>
+    </td>
 
       <td>{{ dateTransformer.transform(event.date, 'yyyy-MM-dd')  }}</td>
       <td>{{ event.startTime }}</td>
       <td>{{ event.finishTime }}</td>
 
+    <td>
       <span *ngFor="let room of rooms">
-        <span *ngIf="room.id == event.room.id"><td>{{ room.name }}</td></span>
+        <span *ngIf="room.id === event.room.id"><td>{{ room.name }}</span>
       </span>
+    </td>
       
 
-
-
-
       <td>
-        <button (click)="deleteEvent(event)">Delete</button>
+        <button class="delete" (click)="deleteEvent(event)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<div>
-  <button (click)="addEvent()">Add Event</button>
-</div>
-<div *ngIf="isAdding">
+
+ 
+
+<div *ngIf="isAdding" class="modal-overlay show">
+  <div class="modal">
 <form (ngSubmit)="createEvent()" #eventForm="ngForm">
     <!-- Title -->
     <div>
@@ -111,29 +117,31 @@
       />
     </div>
   
-    <!-- Start Time -->
-    <div>
-      <label for="startTime">Start Time</label>
-      <input
-        type="time"
-        id="startTime"
-        name="startTime"
-        [(ngModel)]="event.startTime"
-        required
-      />
-    </div>
+    <!-- Start Time and Finish Time -->
+<div class="time-container">
+  <div class="time-group">
+    <label for="startTime">Start Time</label>
+    <input
+      type="time"
+      id="startTime"
+      name="startTime"
+      [(ngModel)]="event.startTime"
+      required
+    />
+  </div>
   
-    <!-- Finish Time -->
-    <div>
-      <label for="finishTime">Finish Time</label>
-      <input
-        type="time"
-        id="finishTime"
-        name="finishTime"
-        [(ngModel)]="event.finishTime"
-        required
-      />
-    </div>
+  <div class="time-group">
+    <label for="finishTime">Finish Time</label>
+    <input
+      type="time"
+      id="finishTime"
+      name="finishTime"
+      [(ngModel)]="event.finishTime"
+      required
+    />
+  </div>
+</div>
+
   
     <!-- Room -->
     <div>
@@ -172,4 +180,5 @@
       <button type="submit" [disabled]="eventForm.invalid">Create Event</button>
     </div>
   </form>
+</div>
 </div>

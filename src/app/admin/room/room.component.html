@@ -1,5 +1,8 @@
 <div>
-    <h2>Room List</h2>
+    <div class="title-button-container">
+        <h2>Room List</h2>
+        <button (click)="loadAddRoomForm()">Add Room</button>
+    </div>
     <table class="table-bordered responsive-table">
         <thead>
             <tr>
@@ -7,6 +10,7 @@
                 <th>Room Name</th>
                 <th>Capacity</th>
                 <th>Hourly Rate</th>
+                <th>Surface</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,16 +20,18 @@
                 <td>{{ room.name }}</td>
                 <td>{{ room.capacity }}</td>
                 <td>{{ room.hourlyRate }}</td>
+                <td>{{ room.surface }}</td>
                 <td>
-                    <button (click)="editRoom(room)">Edit</button>
-                    <button (click)="deleteRoom(room.id)">Delete</button>
+                    <button class="edit" (click)="editRoom(room)">Edit</button>
+                    <button class="delete" (click)="deleteRoom(room.id)">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button (click)="loadAddRoomForm()">Add Room</button>
+   
     <div *ngIf="isEditing">
-        <div class="modal">
+        <div class="modal-overlay show">
+            <div class ="modal">
             <h3>Edit Room</h3>
             <form (ngSubmit)="updateRoom(room)">
                 <div>
@@ -65,9 +71,11 @@
             </form>
         </div>
     </div>
+    </div>
     
     <div *ngIf="isAdding">
-        <div class="modal">
+        <div class="modal-overlay show">
+            <div class="modal">
             <h3>Add Room</h3>
             <form (ngSubmit)="addRoom(room)">
                 <div>
@@ -100,11 +108,24 @@
                         required
                     />
                 </div>
+
+                <div>
+                    <label for="roomSurface">Surface:</label>
+                    <input
+                        type="number"
+                        id="roomSurface"
+                        [(ngModel)]="room.surface"
+                        name="surface"
+                        required
+                    />
+                </div>
+
                 <div>
                     <button type="submit">Add</button>
                     <button type="button" (click)="cancelAdd()">Cancel</button>
                 </div>
             </form>
         </div>
+    </div>
     </div>
 </div>  

@@ -31,9 +31,11 @@ export class MaterialComponent {
     this.loadMaterials();
   }
   deleteMaterial(id: number): void {
+    const confirmed = window.confirm("Are you sure?");
+    if (confirmed ){
     this.materialService.deleteMaterial(id).subscribe((data) => {
       this.loadMaterials();
-    });
+    })};
   }
   addMaterial(material): void {
     this.materialService.addMaterial(material).subscribe((data) => {

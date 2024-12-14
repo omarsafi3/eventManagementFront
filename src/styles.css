@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* Apply the Inter font globally */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7fc;
+}

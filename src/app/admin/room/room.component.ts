@@ -14,6 +14,7 @@ export class RoomComponent {
   isAdding = false;
   rooms: any[] = [];
   room = {
+    id: 0,
     name: '',
     surface: 0,
     capacity: 0,
@@ -29,9 +30,11 @@ export class RoomComponent {
     this.loadRooms();
   }
   deleteRoom(id: number): void {
+    const confirmed = window.confirm("Are you sure?");
+    if (confirmed ){
     this.roomService.deleteRoom(id).subscribe((data) => {
       this.loadRooms();
-    });
+    })};
   }
   addRoom(room): void {
     this.roomService.createRoom(room).subscribe((data) => {
@@ -51,15 +54,15 @@ export class RoomComponent {
   }
   cancelEdit(): void {
     this.isEditing = false;
-    this.room = { name: '', surface: 0, capacity: 0, hourlyRate: 0 };  // Reset the category
+    this.room = { id:0, name: '', surface: 0, capacity: 0, hourlyRate: 0 };  // Reset the category
   }
   loadAddRoomForm(): void {
     this.isAdding = true;
-    this.room = { name: '', surface: 0, capacity: 0, hourlyRate: 0 };  // Reset the category
+    this.room = { id:0, name: '', surface: 0, capacity: 0, hourlyRate: 0 };  // Reset the category
   }
   cancelAdd(): void {
     this.isAdding = false;
-    this.room = { name: '', surface: 0, capacity: 0, hourlyRate: 0 };  // Reset the category
+    this.room = { id:0, name: '', surface: 0, capacity: 0, hourlyRate: 0 };  // Reset the category
   }
   
 }

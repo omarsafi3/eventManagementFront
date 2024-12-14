@@ -49,7 +49,7 @@ export class LoginComponent {
                 localStorage.setItem('roles', res.roles);  // Store roles in localStorage
                 localStorage.setItem('username', res.fullName);  // Store username in localStorage
                 if (res.roles === ('ADMIN')) {
-                  this.router.navigate(['/admin/dashboard']);  // Redirect to admin dashboard
+                  this.router.navigate(['/admin/event']);  // Redirect to admin dashboard
                 }
               }
             }

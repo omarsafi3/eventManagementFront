@@ -31,9 +31,12 @@ export class CategoryComponent {
   }
 
   deleteCategory(id: number): void {
+    const confirmed = window.confirm("Are you sure?");
+    if (confirmed ){
     this.categoryService.deleteCategory(id).subscribe((data) => {
       this.loadCategories();
     });
+    }
   }
 
   addCategory(category): void {
