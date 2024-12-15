@@ -9,6 +9,7 @@ export class EventService {
   apiUrl = environment.apiUrl + "/api/v1/events"
   staffMembersUrl = environment.apiUrl + "/api/v1/staffmembers"
   clientUrl = environment.apiUrl + "/api/v1/clients"
+  availableRoomsUrl = environment.apiUrl + "/api/v1/room/available-rooms"
   constructor(private http : HttpClient) {}
 
   getEvents() {
@@ -37,4 +38,10 @@ export class EventService {
   deleteEvent(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  getAvailableRooms(start: string, end: string, day: string) {
+    const params = { start, end, day }; // Query parameters
+    return this.http.get<any>(`${this.availableRoomsUrl}`, { params });
+  }
+  
+  
 }
