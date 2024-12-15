@@ -86,7 +86,7 @@
       <select
         id="category"
         name="category"
-        [(ngModel)]="event.category"
+        [(ngModel)]="event.category.id"
         required
       >
         <option *ngFor="let category of categories" [value]="category.id">
@@ -146,7 +146,7 @@
     <!-- Room -->
     <div>
       <label for="room">Room</label>
-      <select id="room" name="room" [(ngModel)]="event.room" required>
+      <select id="room" name="room" [(ngModel)]="event.room.id" required>
         <option *ngFor="let room of rooms" [value]="room.id">
           {{ room.name }}
         </option>

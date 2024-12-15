@@ -18,12 +18,18 @@ export class EventComponent {
   event = {
     title: '',
     description: '',
-    category: '',
+    category: {
+      id: 0,
+      name: ''
+    },
     client: '',
     date: '',
     startTime: '',
     finishTime: '',
-    room: '',
+    room: {
+      id: 0,
+      name: ''
+    },
     registration: '',
     staff: '',
     material: ''
