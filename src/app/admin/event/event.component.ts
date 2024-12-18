@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css'], // Fixed typo
+  styleUrls: ['./event.component.css'], 
   providers: [DatePipe]
 })
 export class EventComponent {
@@ -46,8 +46,10 @@ export class EventComponent {
   events: any[] = [];
   clients: any[] = [];
   isAdding = false;
-  currentStep: number = 1; // Track current step
+  currentStep: number = 1; 
   totalSteps: number = 3;
+  selectedEvent: any; // To hold the selected event
+  isViewingDetails: boolean = false; // To control visibility of the modal
 
   constructor(
     private eventService: EventService,
@@ -66,6 +68,16 @@ export class EventComponent {
       
     }
   }
+  viewEventDetails(event: any) {
+    this.selectedEvent = event; // Store the event to show in the modal
+    this.isViewingDetails = true; // Show the modal
+  }
+
+  // Function to close the modal
+  closeDetails() {
+    this.isViewingDetails = false; // Hide the modal
+    this.selectedEvent = null; // Clear the selected event
+  }
 
   previousStep() {
     if (this.currentStep > 1) {
@@ -73,24 +85,24 @@ export class EventComponent {
     }
   }
   isStepValid(): boolean {
-    // Validate the current step based on required fields
+ 
     switch (this.currentStep) {
       case 1:
         
         return (
-          !!this.event.title && // Ensures title is a non-empty string
-          !!this.event.description && // Ensures description is a non-empty string
-          !!this.event.category?.id && // Ensures category exists and has a valid id
-          !!this.event.client // Ensures client is truthy
+          !!this.event.title && 
+          !!this.event.description && 
+          !!this.event.category?.id && 
+          !!this.event.client 
         );
       case 2:
         return (
-          !!this.event.date && // Ensures date is valid
-          !!this.event.startTime && // Ensures startTime is valid
-          !!this.event.finishTime // Ensures finishTime is valid
+          !!this.event.date && 
+          !!this.event.startTime && 
+          !!this.event.finishTime 
         );
       default:
-        return true; // Step 3 (Room selection) is always valid if room is selectable
+        return true; 
     }
   }
   isLoadingRooms = false;
@@ -102,7 +114,7 @@ export class EventComponent {
       return;
     }
 
-    const day = this.event.date // Extract day from the date
+    const day = this.event.date
     this.isLoadingRooms = true;
 
     this.eventService.getAvailableRooms(startTime, finishTime, day).subscribe(
@@ -148,7 +160,6 @@ export class EventComponent {
   loadRooms() {
     this.room.getRooms().subscribe((res: any) => {
       this.rooms2 = res;
-      console.log(this.rooms2);
     });
   }
 
@@ -160,12 +171,11 @@ export class EventComponent {
   loadClients() {
     this.eventService.getClients().subscribe((res: any) => {
       this.clients = res;
-      console.log(this.clients);
     });
   }
   selectedRoom: any = null;
   createEvent() {
-    console.log(this.event);
+
     this.getRoom(this.event.room.id).subscribe((res: any) => {
       this.selectedRoom = res;
       this.event.room.name = this.selectedRoom.name;
@@ -173,9 +183,7 @@ export class EventComponent {
       this.event.room.hourlyRate = this.selectedRoom.hourlyRate;
       this.event.room.surface = this.selectedRoom.surface;
       this.eventService.create(this.event).subscribe((res: any) => {
-        console.log(this.event);
-        console.log('Event created successfully', res);
-        this.loadEvents(); // Reload events after creation
+        this.loadEvents(); 
         this.isAdding = !this.isAdding;
         this.currentStep = 1;
       });
@@ -210,7 +218,7 @@ export class EventComponent {
     const confirmed = window.confirm("Are you sure?");
     if (confirmed ){
     this.eventService.deleteEvent(id).subscribe((res: any) => {
-      this.loadEvents(); // Reload events after deletion
+      this.loadEvents(); 
     })};
   }
   addEvent() {
@@ -219,6 +227,28 @@ export class EventComponent {
   cancelAdd() {
     this.isAdding = !this.isAdding;
     this.currentStep = 1;
+    this.event = {
+      title: '',
+      description: '',
+      category: {
+        id: 0,
+        name: ''
+      },
+      client: '',
+      date: '',
+      startTime: '',
+      finishTime: '',
+      room: {
+        id: 0,
+        name: '',
+        hourlyRate: 0,
+        capacity: 0,
+        surface: 0
+      },
+      registration: '',
+      staff: '',
+      material: ''
+    };
   }
 
 

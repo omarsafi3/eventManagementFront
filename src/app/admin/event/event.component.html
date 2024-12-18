@@ -2,6 +2,7 @@
   <h2>Events list</h2>
   <button (click)="addEvent()">Add Event</button>
 </div>
+
 <table class="table-bordered responsive-table">
   <thead>
     <tr>
@@ -39,117 +40,180 @@
 
       <td>
         <span *ngFor="let room of rooms2">
-          <span *ngIf="room.id === event.room.id">
-      <td>{{ room.name }}</span>
+          <span *ngIf="room.id === event.room.id">{{ room.name }}</span>
         </span>
       </td>
 
-
       <td>
         <button class="delete" (click)="deleteEvent(event.id)">Delete</button>
+        <!-- View Details Button -->
+        <button class="view-details" (click)="viewEventDetails(event)">View</button>
       </td>
     </tr>
   </tbody>
 </table>
-
-
-
-
-
-<div *ngIf="isAdding" class="modal-overlay show">
+<div *ngIf="isViewingDetails" class="modal-overlay show">
   <div class="modal">
-    <form #eventForm="ngForm">
-      <!-- Step 1: Basic Event Details -->
-      <div *ngIf="currentStep === 1">
-        <!-- Title -->
-        <div>
-          <label for="title">Title</label>
-          <input type="text" id="title" name="title" [(ngModel)]="event.title" required />
-        </div>
+    <h3>Event Details</h3>
 
-        <!-- Description -->
-        <div>
-          <label for="description">Description</label>
-          <textarea id="description" name="description" [(ngModel)]="event.description" required></textarea>
-        </div>
-
-        <!-- Category -->
-        <div>
-          <label for="category">Category</label>
-          <select id="category" name="category" [(ngModel)]="event.category.id" required>
-            <option *ngFor="let category of categories" [value]="category.id">
-              {{ category.name }}
-            </option>
-          </select>
-        </div>
-
-        <!-- Client -->
-        <div>
-          <label for="client">Client</label>
-          <select id="client" name="client" [(ngModel)]="event.client" required>
-            <option *ngFor="let client of clients" [value]="client.id">
-              {{ client.name }}
-            </option>
-          </select>
-        </div>
+    <!-- Event Details -->
+    <div>
+      <strong>Title:</strong> {{ selectedEvent.title }}
+    </div>
+    <div>
+      <strong>Description:</strong> {{ selectedEvent.description }}
+    </div>
+    <div>
+      <div *ngFor="let category of categories">
+        <span *ngIf="category.id === selectedEvent.category.id">
+          <strong>Category:</strong> {{ category.name }}
+        </span>
+      </div>
+    </div>
+    <div>
+      <div *ngFor="let client of clients">
+        <span *ngIf="client.id === selectedEvent.client.id">
+          <strong>Client:</strong> {{ client.name }}
+        </span>
+      </div>
+    </div>
+    <div>
+      <strong>Date:</strong> {{ selectedEvent.date | date: 'yyyy-MM-dd' }}
+    </div>
+    <div>
+      <strong>Start Time:</strong> {{ selectedEvent.startTime }}
+    </div>
+    <div>
+      <strong>Finish Time:</strong> {{ selectedEvent.finishTime }}
+    </div>
+    <div>
+      <div *ngFor="let room of rooms2">
+        <span *ngIf="room.id === selectedEvent.room.id">
+          <strong>Room:</strong> {{ room.name }}
+        </span>
       </div>
 
-      <!-- Step 2: Date and Time -->
-      <div *ngIf="currentStep === 2">
-        <!-- Date -->
-        <div>
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date" [(ngModel)]="event.date" required />
-        </div>
+      <h4>Registrations</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Participant Name</th>
+            <th>Participant Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let registration of selectedEvent.registrationWrapper.registration">
+            <td>{{ registration.participant.fullName }}</td>
+            <td>{{ registration.participant.email }}</td>
+          </tr>
+        </tbody>
+      </table>
 
-        <!-- Start Time and Finish Time -->
-        <div class="time-container">
-          <div class="time-group">
-            <label for="startTime">Start Time</label>
-            <input type="time" id="startTime" name="startTime" [(ngModel)]="event.startTime" required />
-          </div>
-
-          <div class="time-group">
-            <label for="finishTime">Finish Time</label>
-            <input type="time" id="finishTime" name="finishTime" [(ngModel)]="event.finishTime" required />
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="currentStep === 3">
-        <!-- Room -->
-        <div>
-          <label for="room">Room</label>
-          <select id="room" name="room" [(ngModel)]="event.room.id" required>
-            <option *ngFor="let room of rooms" [value]="room.id">
-              {{ room.name }}
-            </option>
-          </select>
-        </div>
-      
-        <!-- Fetch Available Rooms Button -->
-        <div *ngIf="isLoadingRooms">Loading available rooms...</div>
-        <div *ngIf="!isLoadingRooms && rooms.length === 0">No available rooms found.</div>
-      </div>
-
-      <!-- Navigation Buttons -->
-      <div class="form-navigation">
-
-
-
-        <button type="submit" *ngIf="currentStep === totalSteps" [disabled]="eventForm.invalid" (click)="createEvent()">
-          Submit
-        </button>
-        <button type="button" *ngIf="currentStep > 1" (click)="previousStep()">
-          Previous
-        </button>
-
-        <button type="button" *ngIf="currentStep < totalSteps" (click)="nextStep()" [disabled]="!isStepValid()">
-          Next
-        </button>
-        <button type="button" (click)="cancelAdd()">Cancel</button>
-
-      </div>
-    </form>
+      <button (click)="closeDetails()">Close</button>
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+  <div *ngIf="isAdding" class="modal-overlay show">
+    <div class="modal">
+      <form #eventForm="ngForm">
+        <!-- Step 1: Basic Event Details -->
+        <div *ngIf="currentStep === 1">
+          <!-- Title -->
+          <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" [(ngModel)]="event.title" required />
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label for="description">Description</label>
+            <textarea id="description" name="description" [(ngModel)]="event.description" required></textarea>
+          </div>
+
+          <!-- Category -->
+          <div>
+            <label for="category">Category</label>
+            <select id="category" name="category" [(ngModel)]="event.category.id" required>
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Client -->
+          <div>
+            <label for="client">Client</label>
+            <select id="client" name="client" [(ngModel)]="event.client" required>
+              <option *ngFor="let client of clients" [value]="client.id">
+                {{ client.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 2: Date and Time -->
+        <div *ngIf="currentStep === 2">
+          <!-- Date -->
+          <div>
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" [(ngModel)]="event.date" required />
+          </div>
+
+          <!-- Start Time and Finish Time -->
+          <div class="time-container">
+            <div class="time-group">
+              <label for="startTime">Start Time</label>
+              <input type="time" id="startTime" name="startTime" [(ngModel)]="event.startTime" required />
+            </div>
+
+            <div class="time-group">
+              <label for="finishTime">Finish Time</label>
+              <input type="time" id="finishTime" name="finishTime" [(ngModel)]="event.finishTime" required />
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="currentStep === 3">
+          <!-- Room -->
+          <div>
+            <label for="room">Room</label>
+            <select id="room" name="room" [(ngModel)]="event.room.id" required>
+              <option *ngFor="let room of rooms" [value]="room.id">
+                {{ room.name }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Fetch Available Rooms Button -->
+          <div *ngIf="isLoadingRooms">Loading available rooms...</div>
+          <div *ngIf="!isLoadingRooms && rooms.length === 0">No available rooms found.</div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="form-navigation">
+
+
+
+          <button type="submit" *ngIf="currentStep === totalSteps" [disabled]="eventForm.invalid"
+            (click)="createEvent()">
+            Submit
+          </button>
+          <button type="button" *ngIf="currentStep > 1" (click)="previousStep()">
+            Previous
+          </button>
+
+          <button type="button" *ngIf="currentStep < totalSteps" (click)="nextStep()" [disabled]="!isStepValid()">
+            Next
+          </button>
+          <button type="button" (click)="cancelAdd()">Cancel</button>
+
+        </div>
+      </form>
+    </div>
+  </div>

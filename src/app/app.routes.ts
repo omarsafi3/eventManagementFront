@@ -9,6 +9,8 @@ import { MaterialComponent } from './admin/material/material.component';
 import { RoomComponent } from './admin/room/room.component';
 import { RegisterComponent } from './register/register.component';
 import { EventComponent } from './admin/event/event.component';
+import { EventsComponent } from './user/events/events.component';
+import { UserComponent } from './user/user.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
@@ -24,6 +26,14 @@ export const routes: Routes = [
       { path: 'room', component: RoomComponent },
       { path: 'event', component: EventComponent },
     ],
+  },
+  {
+    path : 'user',
+    component: UserComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'events', component: EventsComponent },
+    ]
   },
   { path: '**', redirectTo: '/login' }
 

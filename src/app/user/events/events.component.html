@@ -1,0 +1,63 @@
+<div class="title-button-container">
+    <h2>Events list</h2>
+</div>
+
+<table class="table-bordered responsive-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>Finish Time</th>
+            <th>Room</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let event of events">
+            <td>{{ event.title }}</td>
+            <td>{{ event.description }}</td>
+
+            <td>
+                <span *ngFor="let category of categories">
+                    <span *ngIf="category.id === event.category.id">{{ category.name }}</span>
+                </span>
+            </td>
+
+            <td>
+                <span *ngFor="let client of clients">
+                    <span *ngIf="client.id === event.client.id">{{ client.name }}</span>
+                </span>
+            </td>
+
+            <td>{{ dateTransformer.transform(event.date, 'yyyy-MM-dd') }}</td>
+            <td>{{ event.startTime }}</td>
+            <td>{{ event.finishTime }}</td>
+
+            <td>
+                <span *ngFor="let room of rooms2">
+                    <span *ngIf="room.id === event.room.id">
+                        {{ room.name }}
+                    </span>
+                </span>
+            </td>
+
+            <td *ngIf="!event.isParticipating">
+                <!-- Button Disabled if Already Participating -->
+                <button
+                    class="submit" 
+                    [disabled]="event.isParticipating" 
+                    (click)="registerEvent(event.id)">
+                    Participate
+                </button>
+                <span *ngIf="event.isParticipating">You are already registered</span>
+            </td>
+            <td *ngIf="event.isParticipating">
+                You are already registered
+            </td>
+        </tr>
+    </tbody>
+</table>

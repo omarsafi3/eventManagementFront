@@ -1,0 +1,22 @@
+<div class="sidebar">
+    <img src="/Eventure.png" alt="Sidebar Logo" class="sidebar-logo">
+    <h2 class="sidebar-title">Event Management</h2>
+    <h3 class="sidebar-username">{{ user }}</h3>
+    <div class="divider"></div>
+    <ul>
+      <li>
+        <a routerLink="/user/events" routerLinkActive="active">
+          <i class="fas fa-calendar-alt"></i> Event
+        </a>
+      </li>
+      
+      
+      <li class="divider"></li>
+      <li>
+        <button class="logout-btn" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </li>
+    </ul>
+  </div>
+  

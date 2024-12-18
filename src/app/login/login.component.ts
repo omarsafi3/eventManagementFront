@@ -51,6 +51,9 @@ export class LoginComponent {
                 if (res.roles === ('ADMIN')) {
                   this.router.navigate(['/admin/event']);  // Redirect to admin dashboard
                 }
+                if (res.roles === ('USER')) {
+                  this.router.navigate(['/user/events']);  // Redirect to user dashboard
+                }
               }
             }
           );

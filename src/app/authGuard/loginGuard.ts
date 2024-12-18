@@ -17,7 +17,7 @@ export class LoginGuard implements CanActivate {
       const roles = localStorage.getItem('roles');
       // Retrieve roles from localStorage
       if (roles?.includes('ADMIN')) {
-        this.router.navigate(['/admin/dashboard']);  // Use correct path
+        this.router.navigate(['/admin/event']);  // Use correct path
       } else if (roles?.includes('USER')) {
         this.router.navigate(['/user-dashboard']);  // Correct redirect for user roles
       } else {

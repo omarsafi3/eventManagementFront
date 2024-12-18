@@ -4,7 +4,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f2f5;
+    background-color:#696969;
 }
 
 .login-container {
@@ -67,4 +67,17 @@ button:disabled {
     color: red;
     margin-top: 15px;
     font-size: 14px;
+}
+.logo {
+    display: block;
+    margin: 0 auto 20px; /* Center the logo and add space below it */
+    width: 120px; /* Adjust the size of the logo */
+    height: 120px; /* Maintain the aspect ratio */
+    border-radius: 50%; /* Optional: Add a circular effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transition: transform 0.3s ease; /* Add a hover effect */
+}
+
+.logo:hover {
+    transform: scale(1.1); /* Slightly enlarge the logo on hover */
 }
